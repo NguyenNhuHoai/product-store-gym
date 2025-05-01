@@ -11,12 +11,16 @@ import {
   UpdatedAt,
 } from 'sequelize-typescript';
 import { ProductsModel } from 'src/products/products.model';
+import { createProductImageDTO } from './dto/create_product_images.dto';
 
 @Table({
   tableName: 'product_images',
   timestamps: true,
 })
-export class ProductImageModel extends Model<ProductImageModel> {
+export class ProductImageModel extends Model<
+  ProductImageModel,
+  createProductImageDTO
+> {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({

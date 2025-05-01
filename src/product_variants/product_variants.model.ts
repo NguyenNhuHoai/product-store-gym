@@ -14,6 +14,7 @@ import {
 import { CartItemsModel } from 'src/cart_items/cart_items.model';
 import { ProductsModel } from 'src/products/products.model';
 import { createProductVariantsDTO } from './dto/create_product_variants.dto';
+import { OrderItemModel } from 'src/order_items/order_items.model';
 
 @Table({
   tableName: 'product_variants',
@@ -60,12 +61,6 @@ export class ProductVariantModel extends Model<
   })
   stock_quantity: number;
 
-  @ForeignKey(() => CartItemsModel)
-  @Column({
-    type: DataType.UUID,
-  })
-  cart_item_id: string;
-
   @Column({
     type: DataType.STRING,
   })
@@ -90,4 +85,7 @@ export class ProductVariantModel extends Model<
 
   @BelongsTo(() => ProductsModel)
   products_id: ProductsModel;
+
+  @HasMany(() => OrderItemModel)
+  order_items: OrderItemModel[];
 }

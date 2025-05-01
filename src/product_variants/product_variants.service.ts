@@ -47,7 +47,6 @@ export class ProductVariantsService {
       {
         product_id: data.product_id,
         price: data.price,
-        cart_item_id: data.cart_item_id,
         sku: data.sku,
         size: data.size,
         stock_quantity: data.stock_quantity,

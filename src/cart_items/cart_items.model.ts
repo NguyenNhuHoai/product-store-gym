@@ -40,6 +40,12 @@ export class CartItemsModel extends Model<CartItemsModel> {
   })
   product_variant_id: string;
 
+  @BelongsTo(() => ProductVariantModel, {
+    foreignKey: 'product_variant_id',
+    onDelete: 'CASCADE',
+  })
+  products_variant: ProductVariantModel[];
+
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
@@ -59,9 +65,6 @@ export class CartItemsModel extends Model<CartItemsModel> {
     type: DataType.DATE,
   })
   update_at: Date;
-
-  @HasMany(() => ProductVariantModel)
-  products_variant: ProductVariantModel[];
 
   @BelongsTo(() => CartModel, {
     foreignKey: 'cart_id',

@@ -94,8 +94,7 @@ export class ProductsService {
   }
 
   async deleteProduct(id: string) {
-    console.log('id', id);
-    const checkIdProduct = await this.findOne(id);
+    const checkIdProduct = await this.productModel.findOne({ where: { id } });
     if (!checkIdProduct) {
       throw new NotFoundException('Product is not defound');
     }
