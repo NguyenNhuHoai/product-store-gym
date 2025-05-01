@@ -11,12 +11,16 @@ import {
   UpdatedAt,
 } from 'sequelize-typescript';
 import { UserModel } from 'src/users/users.model';
+import { createUserContactDTO } from './dto/create_user_contact.dto';
 
 @Table({
   tableName: 'user_contact',
   timestamps: true,
 })
-export class UserContactModel extends Model<UserContactModel> {
+export class UserContactModel extends Model<
+  UserContactModel,
+  createUserContactDTO
+> {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({

@@ -51,8 +51,12 @@ export class UserModel extends Model<UserModel, createUserDTO> {
   })
   is_admin: boolean;
 
-  @HasMany(() => UserContactModel)
-  user_contacts: UserContactModel[];
+  @HasMany(() => UserContactModel, {
+    as: 'userContacts',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
+  userContacts: UserContactModel[];
 
   @HasMany(() => CartModel)
   carts: CartModel[];

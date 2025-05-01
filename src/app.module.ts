@@ -23,6 +23,8 @@ import { ReviewImagesModule } from './review_images/review_images.module';
 import { BlogModule } from './blogs/blogs.module';
 import { BrandsModule } from './brands/brands.module';
 import { AuthModule } from './auth/auth.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import * as path from 'path';
 
 @Module({
   imports: [
@@ -35,6 +37,11 @@ import { AuthModule } from './auth/auth.module';
       database: 'gym_sport',
       autoLoadModels: true,
       synchronize: true,
+    }),
+    ProductImagesModule,
+    ServeStaticModule.forRoot({
+      rootPath: path.join(__dirname, '..', 'uploads'), // Đường dẫn đến thư mục chứa file tĩnh
+      serveRoot: '/uploads', // URL prefix để truy cập ảnh
     }),
     UsersModule,
     CategoriesModule,

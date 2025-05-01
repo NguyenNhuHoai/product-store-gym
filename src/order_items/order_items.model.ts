@@ -39,6 +39,12 @@ export class OrderItemModel extends Model<OrderItemModel> {
   })
   productVariant_id: string;
 
+  @BelongsTo(() => ProductVariantModel, {
+    foreignKey: 'productVariant_id',
+    onDelete: 'CASCADE',
+  })
+  product_variant: ProductVariantModel;
+
   @Column({
     type: DataType.INTEGER,
     allowNull: false,

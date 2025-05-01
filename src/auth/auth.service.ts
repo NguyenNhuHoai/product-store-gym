@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   Injectable,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { createUserDTO } from 'src/users/dto/create_user.dto';
@@ -8,13 +9,11 @@ import { validateEmail } from 'src/function_helps/fcHelp';
 import * as bcrypt from 'bcrypt';
 import { UsersService } from 'src/users/users.service';
 import * as jwt from 'jsonwebtoken';
+import { UserModel } from 'src/users/users.model';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private readonly usersService: UsersService,
-    // private readonly authService: AuthService,
-  ) {}
+  constructor(private readonly usersService: UsersService) {}
 
   async hashPassword(password: string) {
     const salt = await bcrypt.genSalt(10);
@@ -93,5 +92,10 @@ export class AuthService {
     if (!isValid) throw new UnauthorizedException('Incorrect password');
 
     return await this.generateToken(data, user);
+  }
+
+  async update(id: string, data: createUserDTO) {
+    data.password_hash = await this.hashPassword(data.password_hash);
+    return this.usersService.update(id, data);
   }
 }
