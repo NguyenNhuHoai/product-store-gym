@@ -9,12 +9,16 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { ReviewsModel } from 'src/reviews/reviews.model';
+import { createReviewImageDTO } from './dto/create_review_image.dto';
 
 @Table({
   tableName: 'review_images',
   timestamps: true,
 })
-export class ReviewImagesModel extends Model<ReviewImagesModel> {
+export class ReviewImagesModel extends Model<
+  ReviewImagesModel,
+  createReviewImageDTO
+> {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({

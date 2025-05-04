@@ -13,12 +13,13 @@ import {
 } from 'sequelize-typescript';
 import { CartModel } from 'src/cart/cart.model';
 import { ProductVariantModel } from 'src/product_variants/product_variants.model';
+import { createCartItemDTO } from './dto/create_cart_item.dto';
 
 @Table({
   tableName: 'cart_items',
   timestamps: true,
 })
-export class CartItemsModel extends Model<CartItemsModel> {
+export class CartItemsModel extends Model<CartItemsModel, createCartItemDTO> {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({

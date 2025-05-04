@@ -9,12 +9,13 @@ import {
   Unique,
   UpdatedAt,
 } from 'sequelize-typescript';
+import { createBlogDto } from './dto/create_blog.dto';
 
 @Table({
   tableName: 'blogs',
   timestamps: true,
 })
-export class BlogsModel extends Model<BlogsModel> {
+export class BlogsModel extends Model<BlogsModel, createBlogDto> {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({

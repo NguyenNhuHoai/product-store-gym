@@ -12,12 +12,16 @@ import {
 } from 'sequelize-typescript';
 import { DiscountProductModel } from 'src/discount_product/discount_product.model';
 import { ProductsModel } from 'src/products/products.model';
+import { createDiscountCodeDTO } from './dto/create_discount_codes.dto';
 
 @Table({
   tableName: 'discount_codes',
   timestamps: true,
 })
-export class DiscountCodesModel extends Model<DiscountCodesModel> {
+export class DiscountCodesModel extends Model<
+  DiscountCodesModel,
+  createDiscountCodeDTO
+> {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column(DataType.UUID)

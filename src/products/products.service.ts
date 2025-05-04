@@ -58,7 +58,7 @@ export class ProductsService {
   }
 
   async updateProduct(id: string, data: createProductDTO) {
-    const isValidProduct = await this.findOne(id);
+    const isValidProduct = await this.productModel.findOne({ where: { id } });
 
     if (!isValidProduct) {
       throw new BadRequestException('Is not id products');

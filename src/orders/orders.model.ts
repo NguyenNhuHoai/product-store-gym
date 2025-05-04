@@ -11,12 +11,13 @@ import {
 } from 'sequelize-typescript';
 import { UserContactModel } from 'src/user_contacts/user_contacts.model';
 import { UserModel } from 'src/users/users.model';
+import { createOrderDTO } from './dto/create_order.dto';
 
 @Table({
   tableName: 'orders',
   timestamps: true,
 })
-export class OrdersModel extends Model<OrdersModel> {
+export class OrdersModel extends Model<OrdersModel, createOrderDTO> {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({

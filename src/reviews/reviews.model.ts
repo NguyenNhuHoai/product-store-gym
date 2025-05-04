@@ -14,12 +14,13 @@ import { OrdersModel } from 'src/orders/orders.model';
 import { ProductsModel } from 'src/products/products.model';
 import { ReviewImagesModel } from 'src/review_images/review_images.model';
 import { UserModel } from 'src/users/users.model';
+import { createReviewDTO } from './dto/create_review.dto';
 
 @Table({
   tableName: 'reviews',
   timestamps: true,
 })
-export class ReviewsModel extends Model<ReviewsModel> {
+export class ReviewsModel extends Model<ReviewsModel, createReviewDTO> {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({

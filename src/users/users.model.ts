@@ -29,27 +29,27 @@ export class UserModel extends Model<UserModel, createUserDTO> {
     type: DataType.STRING(100),
     allowNull: false,
   })
-  name: string;
+  declare name: string;
 
   @Column({
     type: DataType.STRING(150),
     allowNull: false,
     unique: true,
   })
-  email: string;
+  declare email: string;
 
   @Column({
     type: DataType.STRING(255),
     allowNull: false,
   })
-  password_hash: string;
+  declare password_hash: string;
 
   @Column({
     type: DataType.BOOLEAN,
     allowNull: false,
     defaultValue: false,
   })
-  is_admin: boolean;
+  declare is_admin: boolean;
 
   @HasMany(() => UserContactModel, {
     as: 'userContacts',

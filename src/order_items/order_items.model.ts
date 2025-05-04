@@ -12,12 +12,13 @@ import {
 } from 'sequelize-typescript';
 import { OrdersModel } from 'src/orders/orders.model';
 import { ProductVariantModel } from 'src/product_variants/product_variants.model';
+import { createOrderItemDTO } from './dto/create_order_item.dto';
 
 @Table({
   tableName: 'order_item',
   timestamps: true,
 })
-export class OrderItemModel extends Model<OrderItemModel> {
+export class OrderItemModel extends Model<OrderItemModel, createOrderItemDTO> {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({
